@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Categories::Create.new(category_params).execute
+    authorize @category
 
     render json: @category, serializer: CategorySerializer, status: :created
   end

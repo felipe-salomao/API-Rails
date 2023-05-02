@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_033827) do
     t.string "nickname"
     t.string "image"
     t.string "email", default: "", null: false
-    t.boolean "admin"
+    t.boolean "kind"
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
