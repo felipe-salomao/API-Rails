@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    attributes:
+      post:
+        id: "Identificador do usuário"
+        name: "Nome"
+        email: "Email do usuário"
+        encrypted_password: "Senha do usuário"
+        kind: "Tipo de usuário"

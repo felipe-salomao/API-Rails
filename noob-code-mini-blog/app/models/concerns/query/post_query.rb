@@ -15,7 +15,9 @@ module PostQuery
         id_eq: params[:id],
         title_cont: params[:title],
         description_cont: params[:description],
-        comments_comment_cont: params[:comment]
+        comments_comment_cont: params[:comment],
+        category_id_eq: params[:category],
+        user_id_eq: params[:user],
       }
     end
 

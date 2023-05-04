@@ -1,0 +1,4 @@
+pt-BR:
+  devise:
+    failure:
+      unauthenticated: "Realize o login"

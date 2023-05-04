@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   def index
     categories = Categories::List.new(params).execute
@@ -13,7 +14,6 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Categories::Create.new(category_params).execute
-    authorize @category
 
     render json: @category, serializer: CategorySerializer, status: :created
   end
@@ -35,6 +35,7 @@ class CategoriesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_category
     @category = Category.find(params[:id])
+    authorize @category
   end
 
   # Only allow a list of trusted parameters through.

@@ -6,14 +6,14 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def create?
-    user.kind?
+    user.kind == 'admin' 
   end
 
   def update?
-    user.kind?
+    user.kind == 'admin'
   end
 
   def destroy?
-    user.kind?
+    user.kind == 'admin'
   end
 end

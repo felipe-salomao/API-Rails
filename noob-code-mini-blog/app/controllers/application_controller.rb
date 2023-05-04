@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
-  include Pundit
   include ErrorsHandler::Handler 
   include ActionController::MimeResponds
   include ActionController::Serialization
+  include Pundit
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protect_from_forgery with: :null_session
 
@@ -16,12 +18,10 @@ class ApplicationController < ActionController::Base
     }
   end
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  protected
 
-  private
-
-  def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_back(fallback_location: root_path)
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :name, :kind])     
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :name, :kind])
   end
 end
